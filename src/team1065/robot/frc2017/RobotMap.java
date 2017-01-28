@@ -3,8 +3,12 @@ package team1065.robot.frc2017;
 public class RobotMap {
 	
 	//PID Constants
-    public static final double STRAIGHT_DRIVE_P = 1/20,
-    		                   MECANUM_STRAIGHT_DRIVE_P = 1/20;
+    public static final double STRAIGHT_DRIVE_P = 0.05,
+    		                   MECANUM_STRAIGHT_DRIVE_P = 0.05,
+    		                   SHOOTER_F = 0,
+	                		   SHOOTER_P = 0,
+            				   SHOOTER_I = 0,
+    						   SHOOTER_D = 0;
     
     //Shooter RPM values
     public static final double SHOOTER_RPM_0 = 0.0,
@@ -30,6 +34,11 @@ public class RobotMap {
     				  	    RIGHT_FRONT_DRIVE_MOTOR_PORT = 1,
 		  	    			LEFT_BACK_DRIVE_MOTOR_PORT = 2,
     				  	    RIGHT_BACK_DRIVE_MOTOR_PORT = 3;
+    
+    //CANTalon Ports
+    public static final int MASTER_TALON_PORT = 0,
+    						SLAVE_TALON_PORT = 1;
+    
     //OI
     //TODO: change names to match this year's usage
     public static final int LEFT_JOYSTICK_PORT = 0,
@@ -43,4 +52,15 @@ public class RobotMap {
 						    SHOOTER_LONG_DISTANCE_SWITCH_PORT = 12,//digital
 				    		SHOOTER_KNOB_PORT = 0,//Analog
 				    		AUTO_KNOB_PORT = 1;//Analog
+    
+    public static final double SHOOTER_KNOB_POS_0 = 0.000,
+			   SHOOTER_KNOB_POS_1 = 0.024,
+			   SHOOTER_KNOB_POS_2 = 0.047,
+			   SHOOTER_KNOB_POS_3 = 0.071,
+			   SHOOTER_KNOB_POS_4 = 0.094,
+			   SHOOTER_KNOB_POS_5 = 0.118,
+			   AUTO_KNOB_POS_0 = 0.000,
+			   AUTO_KNOB_POS_1 = 0.024,
+			   AUTO_KNOB_POS_2 = 0.055,
+			   AUTO_KNOB_POS_3 = 0.087;
 }
