@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	}
 
     public void autonomousInit() {
+    	driveTrain.resetAngle();
     }
 
     public void autonomousPeriodic() {
@@ -35,7 +36,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-    	
+    	driveTrain.resetAngle();
     }
 
     public void teleopPeriodic() {

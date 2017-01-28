@@ -1,6 +1,7 @@
 package team1065.robot.frc2017.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team1065.robot.frc2017.Robot;
 
 
@@ -19,13 +20,7 @@ public class DriveWithJoysticks extends Command {
     	double rightX = Robot.oi.getRightJoystickX();
     	
     	if(Robot.oi.getRightJoystickTop()){
-    		//TODO: replace left top button with joystick difference calculation
-    		if(Robot.oi.getLeftJoystickTop()){
-    		    Robot.driveTrain.mecanumStraightDrive(rightX, rightY);
-    		}
-    		else{
-    			Robot.driveTrain.mecanumDrive(rightX, rightY, leftY);
-    		}
+    		Robot.driveTrain.mecanumStraightDrive(rightX, rightY);
     	}
     	else{
     		//TODO: replace left top button with joystick difference calculation
