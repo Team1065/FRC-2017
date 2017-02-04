@@ -5,7 +5,7 @@ public class RobotMap {
 	//PID Constants
     public static final double STRAIGHT_DRIVE_P = 0.052,
     		                   MECANUM_STRAIGHT_DRIVE_P = 0.052,
-    		                   SHOOTER_F = 0,
+    		                   SHOOTER_F = 2.1,
 	                		   SHOOTER_P = 0,
             				   SHOOTER_I = 0,
     						   SHOOTER_D = 0;
@@ -27,13 +27,17 @@ public class RobotMap {
     						   SHOOTER_VOLT_5 = 1.0;
     
     //Double Constants
-    public static final double JOYSTICK_DEADBAND = 0.05;
+    public static final double JOYSTICK_DEADBAND = 0.05,
+			                   DRIVE_STRAIGHT_BAND_PERCENTAGE = 0.2,
+			                   INTAKE_IN_SPEED = 0.9,
+			    			   INTAKE_OUT_SPEED = 1.0;
 	
 	//PWM Ports
     public static final int LEFT_FRONT_DRIVE_MOTOR_PORT = 0,
     				  	    RIGHT_FRONT_DRIVE_MOTOR_PORT = 1,
 		  	    			LEFT_BACK_DRIVE_MOTOR_PORT = 2,
-    				  	    RIGHT_BACK_DRIVE_MOTOR_PORT = 3;
+    				  	    RIGHT_BACK_DRIVE_MOTOR_PORT = 3,
+    				  	    INTAKE_MOTOR_PORT = 4;
     
     //CANTalon Ports
     public static final int MASTER_TALON_PORT = 1,
@@ -44,7 +48,7 @@ public class RobotMap {
     public static final int LEFT_JOYSTICK_PORT = 0,
 					  		RIGHT_JOYSTICK_PORT = 1,
 					  		ENHANCED_DS_PORT = 2,
-					  		DRIVE_CONTROL_OVERRIDE = 2,//Digital
+					  		COMPRESSOR_CONTROL_OVERRIDE = 2,//Digital
 						    INTAKE_IN_PORT = 4,//Digital
 						    INTAKE_OUT_PORT = 5,//Digital
 						    SHOOTER_CONTROLLER_OVERRIDE = 9,//Digital

@@ -16,20 +16,20 @@ import team1065.robot.frc2017.commands.DriveWithJoysticks;
 public class DriveTrain extends Subsystem {
 	public enum State{TANK_DRIVE, STRAIGHT_DRIVE, MECANUM_DRIVE, STRAIGHT_MECANUM};
 	
-	private VictorSP leftFrontVictor, leftBackVictor, rightFrontVictor, rightBackVictor;
+	private VictorSP leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
 	private AHRS navX;
 	private RobotDrive robotDrive;
 	private State state;
 	
 	public DriveTrain(){
-		leftFrontVictor = new VictorSP(RobotMap.LEFT_FRONT_DRIVE_MOTOR_PORT);
-		leftBackVictor = new VictorSP(RobotMap.LEFT_BACK_DRIVE_MOTOR_PORT);
-		rightFrontVictor = new VictorSP(RobotMap.RIGHT_FRONT_DRIVE_MOTOR_PORT);
-		rightBackVictor = new VictorSP(RobotMap.RIGHT_BACK_DRIVE_MOTOR_PORT);
-		rightFrontVictor.setInverted(true);
-		rightBackVictor.setInverted(true);
+		leftFrontMotor = new VictorSP(RobotMap.LEFT_FRONT_DRIVE_MOTOR_PORT);
+		leftBackMotor = new VictorSP(RobotMap.LEFT_BACK_DRIVE_MOTOR_PORT);
+		rightFrontMotor = new VictorSP(RobotMap.RIGHT_FRONT_DRIVE_MOTOR_PORT);
+		rightBackMotor = new VictorSP(RobotMap.RIGHT_BACK_DRIVE_MOTOR_PORT);
+		rightFrontMotor.setInverted(true);
+		rightBackMotor.setInverted(true);
     	
-    	robotDrive = new RobotDrive(leftFrontVictor, leftBackVictor, rightFrontVictor, rightBackVictor);
+    	robotDrive = new RobotDrive(leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor);
     	robotDrive.setSafetyEnabled(false);
     	state = State.TANK_DRIVE;
 		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);

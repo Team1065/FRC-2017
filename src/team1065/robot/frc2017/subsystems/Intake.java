@@ -1,18 +1,35 @@
 package team1065.robot.frc2017.subsystems;
 
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import team1065.robot.frc2017.RobotMap;
+import team1065.robot.frc2017.commands.ManualIntakeControl;
 
 /**
  *
  */
 public class Intake extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    private Talon intakeMotor;
+    
+    public Intake(){
+    	intakeMotor = new Talon(RobotMap.INTAKE_MOTOR_PORT);
+    }
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new ManualIntakeControl());
+    }
+    
+    public void setIntakeIn(double speed){
+    	intakeMotor.set(Math.abs(speed));
+    }
+    
+    public void setIntakeOut(double speed){
+    	intakeMotor.set(- Math.abs(speed));
+    }
+    
+    public void setIntake(double speed){
+    	intakeMotor.set(speed);
     }
 }
 

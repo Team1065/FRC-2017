@@ -1,8 +1,8 @@
 package team1065.robot.frc2017.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team1065.robot.frc2017.Robot;
+import team1065.robot.frc2017.RobotMap;
 
 
 public class DriveWithJoysticks extends Command {
@@ -23,8 +23,10 @@ public class DriveWithJoysticks extends Command {
     		Robot.driveTrain.mecanumStraightDrive(rightX, rightY);
     	}
     	else{
-    		//TODO: replace left top button with joystick difference calculation
-    		if(Robot.oi.getLeftJoystickTop()){
+    		double averageY = (leftY + rightY)/2.0;
+        	double joystickDiff = Math.abs(leftY-rightY);
+        	
+    		if((leftY * rightY >= 0) && joystickDiff < (Math.abs(averageY) * RobotMap.DRIVE_STRAIGHT_BAND_PERCENTAGE)){
     			Robot.driveTrain.straightDrive((leftY + rightY)/2);
     		}
     		else{
