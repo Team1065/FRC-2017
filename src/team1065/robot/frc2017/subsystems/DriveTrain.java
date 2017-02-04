@@ -16,28 +16,29 @@ import team1065.robot.frc2017.commands.DriveWithJoysticks;
 public class DriveTrain extends Subsystem {
 	public enum State{TANK_DRIVE, STRAIGHT_DRIVE, MECANUM_DRIVE, STRAIGHT_MECANUM};
 	
-	private VictorSP leftFrontVictor, leftBackVictor, rightFrontVictor, rightBackVictor;
+	private VictorSP leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
 	private AHRS navX;
 	private RobotDrive robotDrive;
 	private State state;
 	
 	public DriveTrain(){
-		state = State.TANK_DRIVE;
-		
-		leftFrontVictor = new VictorSP(RobotMap.LEFT_FRONT_DRIVE_MOTOR_PORT);
-		leftBackVictor = new VictorSP(RobotMap.LEFT_BACK_DRIVE_MOTOR_PORT);
-		rightFrontVictor = new VictorSP(RobotMap.RIGHT_FRONT_DRIVE_MOTOR_PORT);
-		rightBackVictor = new VictorSP(RobotMap.RIGHT_BACK_DRIVE_MOTOR_PORT);
-		rightFrontVictor.setInverted(true);
-    	rightBackVictor.setInverted(true);
+		leftFrontMotor = new VictorSP(RobotMap.LEFT_FRONT_DRIVE_MOTOR_PORT);
+		leftBackMotor = new VictorSP(RobotMap.LEFT_BACK_DRIVE_MOTOR_PORT);
+		rightFrontMotor = new VictorSP(RobotMap.RIGHT_FRONT_DRIVE_MOTOR_PORT);
+		rightBackMotor = new VictorSP(RobotMap.RIGHT_BACK_DRIVE_MOTOR_PORT);
+		rightFrontMotor.setInverted(true);
+		rightBackMotor.setInverted(true);
     	
-    	robotDrive = new RobotDrive(leftFrontVictor, leftBackVictor, rightFrontVictor, rightBackVictor);
-    	robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-    	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+    	robotDrive = new RobotDrive(leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor);
     	robotDrive.setSafetyEnabled(false);
+    	state = State.TANK_DRIVE;
+		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
+    	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
     	
     	try {
             navX = new AHRS(SPI.Port.kMXP); 
+            navX.reset();
+            navX.zeroYaw();
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
         }
@@ -48,29 +49,43 @@ public class DriveTrain extends Subsystem {
     }
     
     public void tankDrive(double leftValue, double rightValue){
-    	state = State.TANK_DRIVE;
-    	robotDrive.tankDrive(leftValue, rightValue, true);
+    	if(state != State.TANK_DRIVE){
+    		state = State.TANK_DRIVE;
+    		resetAngle();
+    		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
+        	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
+    	}
+    	robotDrive.tankDrive(leftValue, rightValue, false);
     }
     
     public void straightDrive(double velocity){
     	if(state != State.STRAIGHT_DRIVE){
     		state = State.STRAIGHT_DRIVE;
     		resetAngle();
+    		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
+        	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
     	}
     	robotDrive.drive(velocity, -(getAngle() * RobotMap.STRAIGHT_DRIVE_P));
     }
     
     public void mecanumDrive(double x, double y, double rotation){
-    	state = State.MECANUM_DRIVE;
-    	robotDrive.mecanumDrive_Cartesian(x, y, rotation, 0);
+    	if(state != State.MECANUM_DRIVE){
+    		state = State.MECANUM_DRIVE;
+    		resetAngle();
+    		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+    	}
+    	robotDrive.mecanumDrive_Cartesian(x, -y, rotation, 0);
     }
     
     public void mecanumStraightDrive(double x, double y){
     	if(state != State.STRAIGHT_MECANUM){
     		state = State.STRAIGHT_MECANUM;
     		resetAngle();
+    		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
     	}
-    	robotDrive.mecanumDrive_Cartesian(x, y, -(getAngle() * RobotMap.MECANUM_STRAIGHT_DRIVE_P), 0);
+    	robotDrive.mecanumDrive_Cartesian(x, -y, -(getAngle() * RobotMap.MECANUM_STRAIGHT_DRIVE_P), 0);
     }
     
     public double getAngle(){

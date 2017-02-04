@@ -27,11 +27,11 @@ public class Shooter extends Subsystem {
     	
     	masterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
     	//TODO: using 4*20, check if the rpms are sensible values
-    	masterTalon.configEncoderCodesPerRev(80);
+    	masterTalon.configEncoderCodesPerRev(20);
     	masterTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     	masterTalon.configNominalOutputVoltage(+0.0f, -0.0f);
     	masterTalon.configPeakOutputVoltage(+12.0f, 0.0f);
-    	masterTalon.reverseSensor(false);
+    	masterTalon.reverseSensor(true);
     	masterTalon.reverseOutput(false);
     	masterTalon.setVoltageRampRate(36.0);
     	masterTalon.enableBrakeMode(false);
@@ -59,7 +59,6 @@ public class Shooter extends Subsystem {
     
     public void updateStatus(){
     	SmartDashboard.putNumber("Shooter Talon Speed", masterTalon.getSpeed());
-    	SmartDashboard.putNumber("Shooter Talon get", masterTalon.get());
     	SmartDashboard.putNumber("Shooter Setpoint", masterTalon.getSetpoint());
     }
 }

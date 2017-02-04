@@ -54,6 +54,18 @@ Joystick leftJoystick, rightJoystick, enhancedDS;
     	return leftJoystick.getTrigger();
     }
     
+    public boolean getIntakeInSwitch(){
+    	return enhancedDS.getRawButton(RobotMap.INTAKE_IN_PORT);
+    }
+    
+    public boolean getIntakeOutSwitch(){
+    	return enhancedDS.getRawButton(RobotMap.INTAKE_OUT_PORT);
+    }
+    
+    public boolean getCompressorOverride(){
+    	return enhancedDS.getRawButton(RobotMap.COMPRESSOR_CONTROL_OVERRIDE);
+    }
+    
     public boolean getShooterOverride(){
     	return enhancedDS.getRawButton(RobotMap.SHOOTER_CONTROLLER_OVERRIDE);
     }
