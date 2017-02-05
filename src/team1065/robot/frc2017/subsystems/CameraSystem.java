@@ -13,11 +13,11 @@ public class CameraSystem extends Subsystem {
 	UsbCamera camera1;
 	
 	public CameraSystem(){
-		camera0 = new UsbCamera("cam0",0);
+		camera0 = new UsbCamera("USB Camera 0",0);
 		camera0.setFPS(15);
 		camera0.setResolution(320, 240);
 		
-		camera1 = new UsbCamera("cam1",1);
+		camera1 = new UsbCamera("USB Camera 1",1);
 		camera1.setFPS(15);
 		camera1.setResolution(320, 240);
 		
@@ -30,4 +30,3 @@ public class CameraSystem extends Subsystem {
         setDefaultCommand(new ManualCameraControl());
     }
 }
-

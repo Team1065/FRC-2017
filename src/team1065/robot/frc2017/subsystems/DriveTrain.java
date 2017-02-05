@@ -2,7 +2,9 @@ package team1065.robot.frc2017.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,6 +22,7 @@ public class DriveTrain extends Subsystem {
 	private AHRS navX;
 	private RobotDrive robotDrive;
 	private State state;
+	private Encoder encoder;
 	
 	public DriveTrain(){
 		leftFrontMotor = new VictorSP(RobotMap.LEFT_FRONT_DRIVE_MOTOR_PORT);
@@ -35,10 +38,11 @@ public class DriveTrain extends Subsystem {
 		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
     	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
     	
+    	encoder = new Encoder(RobotMap.DRIVE_ENCODER_PORT_A,RobotMap.DRIVE_ENCODER_PORT_B,true,CounterBase.EncodingType.k1X);
+    	encoder.setDistancePerPulse((RobotMap.DRIVE_WHEEL_DIAMETER * Math.PI)/(RobotMap.DRIVE_ENCODERS_COUNTS_PER_REV));
+    	
     	try {
-            navX = new AHRS(SPI.Port.kMXP); 
-            navX.reset();
-            navX.zeroYaw();
+            navX = new AHRS(SPI.Port.kMXP);
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
         }
@@ -98,14 +102,22 @@ public class DriveTrain extends Subsystem {
     
     public void resetAngle(){
     	try{
-    		navX.reset();
     		navX.zeroYaw();
     	} catch (RuntimeException ex ) {
         }
     }
     
+    public void resetEncoder() {
+    	encoder.reset();
+	}
+
+	public double getEncoderDistance() {
+		return encoder.getDistance();
+	}
+    
     public void updateStatus(){
     	SmartDashboard.putNumber("[DT] Angle", getAngle());
+    	SmartDashboard.putNumber("[DT] Distance", getEncoderDistance());
     }
     
 }

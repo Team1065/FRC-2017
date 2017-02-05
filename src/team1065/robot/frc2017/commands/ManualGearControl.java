@@ -6,10 +6,10 @@ import team1065.robot.frc2017.Robot;
 /**
  *
  */
-public class ManualCameraControl extends Command {
+public class ManualGearControl extends Command {
 
-    public ManualCameraControl() {
-        requires(Robot.cameras);
+    public ManualGearControl() {
+        requires(Robot.gearSystem);
     }
 
     // Called just before this Command runs the first time
@@ -18,8 +18,19 @@ public class ManualCameraControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//TODO: not currently doing anything switching
-    	//USE BUTTON 3,4,5 on wither joystick to switch camera feed
+    	if(Robot.oi.getLeftJoystickTrigger()){
+    		Robot.gearSystem.extendGearPusher();
+    	}
+    	else{
+    		Robot.gearSystem.retractGearPusher();
+    	}
+    	
+    	if(Robot.oi.getGearIntakeCloseSwitch()){
+    		Robot.gearSystem.closeGearIntake();
+    	}
+    	else{
+    		Robot.gearSystem.openGearIntake();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

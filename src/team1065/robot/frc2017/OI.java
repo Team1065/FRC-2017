@@ -70,10 +70,14 @@ Joystick leftJoystick, rightJoystick, enhancedDS;
     	return enhancedDS.getRawButton(RobotMap.SHOOTER_CONTROLLER_OVERRIDE);
     }
     
+    public boolean getGearIntakeCloseSwitch(){
+    	return enhancedDS.getRawButton(RobotMap.GEAR_INTAKE_CLOSE_SWITCH_PORT);
+    }
+    
     public double getShooterDesiredSpeed(){
     	double speed;
 		double knobValue = enhancedDS.getRawAxis(RobotMap.SHOOTER_KNOB_PORT);
-		double threshold = 0.008;
+		double threshold = 0.011;
 		
 		boolean useVoltageValues = getShooterOverride();
 		

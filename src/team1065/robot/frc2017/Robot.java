@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import team1065.robot.frc2017.subsystems.CameraSystem;
 import team1065.robot.frc2017.subsystems.DriveTrain;
+import team1065.robot.frc2017.subsystems.GearSystem;
 import team1065.robot.frc2017.subsystems.Intake;
 import team1065.robot.frc2017.subsystems.Shooter;
 
@@ -18,6 +19,7 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Compressor compressor;
 	public static CameraSystem cameras;
+	public static GearSystem gearSystem;
 
     public void robotInit() {
 		oi = new OI();
@@ -26,6 +28,7 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		compressor = new Compressor();
 		cameras = new CameraSystem();
+		gearSystem = new GearSystem();
     }
 	
     public void disabledInit(){
@@ -38,6 +41,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
     	driveTrain.resetAngle();
+    	driveTrain.resetEncoder();
     }
 
     public void autonomousPeriodic() {
@@ -46,6 +50,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
     	driveTrain.resetAngle();
+    	driveTrain.resetEncoder();
     }
 
     public void teleopPeriodic() {

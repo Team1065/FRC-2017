@@ -20,10 +20,10 @@ public class ManualIntakeControl extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.oi.getIntakeInSwitch()){
-    		Robot.intake.setIntakeIn(RobotMap.INTAKE_IN_SPEED);
+    		Robot.intake.setIntakeIn(.8);
     	}
     	else if(Robot.oi.getIntakeOutSwitch()){
-    		Robot.intake.setIntakeOut(RobotMap.INTAKE_OUT_SPEED);
+    		Robot.intake.setIntakeOut(.8);
     	}
     	else{
     		Robot.intake.setIntake(0);
