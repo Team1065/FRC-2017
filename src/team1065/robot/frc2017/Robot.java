@@ -3,9 +3,12 @@ package team1065.robot.frc2017;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import team1065.robot.frc2017.commands.autonomous.AutoTest;
 import team1065.robot.frc2017.subsystems.CameraSystem;
+import team1065.robot.frc2017.subsystems.Climber;
 import team1065.robot.frc2017.subsystems.DriveTrain;
 import team1065.robot.frc2017.subsystems.GearSystem;
 import team1065.robot.frc2017.subsystems.Intake;
@@ -20,6 +23,9 @@ public class Robot extends IterativeRobot {
 	public static Compressor compressor;
 	public static CameraSystem cameras;
 	public static GearSystem gearSystem;
+	public static Climber climber;
+	
+	Command autonomousCommand;
 
     public void robotInit() {
 		oi = new OI();
@@ -29,6 +35,7 @@ public class Robot extends IterativeRobot {
 		compressor = new Compressor();
 		cameras = new CameraSystem();
 		gearSystem = new GearSystem();
+		climber = new Climber();
     }
 	
     public void disabledInit(){
@@ -42,6 +49,12 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	driveTrain.resetAngle();
     	driveTrain.resetEncoder();
+        autonomousCommand = new AutoTest();
+    	
+    	
+        if (autonomousCommand != null){
+        	autonomousCommand.start();
+        }
     }
 
     public void autonomousPeriodic() {
@@ -51,6 +64,9 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
     	driveTrain.resetAngle();
     	driveTrain.resetEncoder();
+    	if (autonomousCommand != null){
+    		autonomousCommand.cancel();
+    	}
     }
 
     public void teleopPeriodic() {

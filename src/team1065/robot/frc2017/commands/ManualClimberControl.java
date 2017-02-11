@@ -6,10 +6,10 @@ import team1065.robot.frc2017.Robot;
 /**
  *
  */
-public class ManualCameraControl extends Command {
+public class ManualClimberControl extends Command {
 
-    public ManualCameraControl() {
-        requires(Robot.cameras);
+    public ManualClimberControl() {
+        requires(Robot.climber);
     }
 
     // Called just before this Command runs the first time
@@ -18,10 +18,15 @@ public class ManualCameraControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.oi.getCamerafeedSwitch()){
-    		//Robot.cameras.switchCamera();
+    	if(Robot.oi.getClimberUpSwitch()){
+    		Robot.climber.goUp();
     	}
-    	//Robot.cameras.sendImageToDS();
+    	else if(Robot.oi.getClimberDownSwitch()){
+    		Robot.climber.goDown();
+    	}
+    	else{
+    		Robot.climber.stop();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

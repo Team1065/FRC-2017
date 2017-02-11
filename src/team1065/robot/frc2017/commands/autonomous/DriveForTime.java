@@ -1,15 +1,15 @@
-package team1065.robot.frc2017.commands;
+package team1065.robot.frc2017.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
-import team1065.robot.frc2017.Robot;
 
 /**
  *
  */
-public class ManualCameraControl extends Command {
+public class DriveForTime extends Command {
 
-    public ManualCameraControl() {
-        requires(Robot.cameras);
+    public DriveForTime() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -18,10 +18,6 @@ public class ManualCameraControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.oi.getCamerafeedSwitch()){
-    		//Robot.cameras.switchCamera();
-    	}
-    	//Robot.cameras.sendImageToDS();
     }
 
     // Make this return true when this Command no longer needs to run execute()

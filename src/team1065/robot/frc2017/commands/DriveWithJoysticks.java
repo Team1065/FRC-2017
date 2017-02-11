@@ -19,7 +19,14 @@ public class DriveWithJoysticks extends Command {
     	double rightY = Robot.oi.getRightJoystickY();
     	double rightX = Robot.oi.getRightJoystickX();
     	
-    	if(Robot.oi.getRightJoystickTop()){
+    	if(Robot.oi.getLeftJoystickTop()){
+    		Robot.driveTrain.enableDropDownTraction();
+    	}
+    	else{
+    		Robot.driveTrain.disableDropDownTraction();
+    	}
+    	
+    	if(Robot.oi.getRightJoystickTop() && !Robot.oi.getLeftJoystickTop()){
     		Robot.driveTrain.mecanumStraightDrive(rightX, rightY);
     	}
     	else{

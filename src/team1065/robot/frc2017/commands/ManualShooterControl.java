@@ -25,8 +25,9 @@ public class ManualShooterControl extends Command {
     	else{
     		Robot.shooter.setRpm(Robot.oi.getShooterDesiredSpeed());
     	}
-    	//TODO: set agitator and open indexer when shooter is near speed
-    	if(Robot.oi.getRightJoystickTrigger()){
+    	
+    	//if commanded to shoot and the shooter is on target or we are already shooting
+    	if(Robot.oi.getRightJoystickTrigger() && (Robot.shooter.isOnTarget() || Robot.shooter.isIndexerOpen())){
     		Robot.shooter.setAgitator(.5);
     		Robot.shooter.setIndexerOpen();
     	}

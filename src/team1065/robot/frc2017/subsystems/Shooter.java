@@ -78,9 +78,34 @@ public class Shooter extends Subsystem {
     	indexer.set(false);
     }
     
+    public boolean isIndexerOpen(){
+    	return indexer.get();
+    }
+    
+    public boolean isOnTarget(){
+    	double setpoint = masterTalon.getSetpoint();
+    	double speed = masterTalon.getSpeed();
+    	//make sure we are trying to shoot
+    	if (setpoint > .1){
+    		//if speed is within +-5% or we are on voltage mode
+    		if(masterTalon.getControlMode() == CANTalon.TalonControlMode.PercentVbus|| 
+    				speed > (setpoint*.95) && speed < (setpoint*1.05)){
+    			return true;
+    		}
+    		else{
+    			return false;
+    		}
+    	}
+    	else
+    	{
+    		return false;
+    	}
+    }
+    
     public void updateStatus(){
     	SmartDashboard.putNumber("Shooter Talon Speed", masterTalon.getSpeed());
     	SmartDashboard.putNumber("Shooter Setpoint", masterTalon.getSetpoint());
+    	SmartDashboard.putBoolean("Shooter on Target", isOnTarget());
     }
 }
 

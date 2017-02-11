@@ -2,6 +2,7 @@ package team1065.robot.frc2017.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
@@ -23,6 +24,7 @@ public class DriveTrain extends Subsystem {
 	private RobotDrive robotDrive;
 	private State state;
 	private Encoder encoder;
+	private Solenoid dropDown;
 	
 	public DriveTrain(){
 		leftFrontMotor = new VictorSP(RobotMap.LEFT_FRONT_DRIVE_MOTOR_PORT);
@@ -40,6 +42,8 @@ public class DriveTrain extends Subsystem {
     	
     	encoder = new Encoder(RobotMap.DRIVE_ENCODER_PORT_A,RobotMap.DRIVE_ENCODER_PORT_B,true,CounterBase.EncodingType.k1X);
     	encoder.setDistancePerPulse((RobotMap.DRIVE_WHEEL_DIAMETER * Math.PI)/(RobotMap.DRIVE_ENCODERS_COUNTS_PER_REV));
+    	
+    	dropDown = new Solenoid(RobotMap.DROPDOWN_SOLENOID_PORT);
     	
     	try {
             navX = new AHRS(SPI.Port.kMXP);
@@ -114,7 +118,15 @@ public class DriveTrain extends Subsystem {
 	public double getEncoderDistance() {
 		return encoder.getDistance();
 	}
+	
+	public void enableDropDownTraction(){
+		dropDown.set(true);
+	}
     
+	public void disableDropDownTraction(){
+		dropDown.set(false);
+	}
+	
     public void updateStatus(){
     	SmartDashboard.putNumber("[DT] Angle", getAngle());
     	SmartDashboard.putNumber("[DT] Distance", getEncoderDistance());

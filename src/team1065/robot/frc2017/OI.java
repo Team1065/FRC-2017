@@ -54,6 +54,10 @@ Joystick leftJoystick, rightJoystick, enhancedDS;
     	return leftJoystick.getTrigger();
     }
     
+    public boolean getCamerafeedSwitch(){
+    	return leftJoystick.getRawButton(3) || rightJoystick.getRawButton(3);
+    }
+    
     public boolean getIntakeInSwitch(){
     	return enhancedDS.getRawButton(RobotMap.INTAKE_IN_PORT);
     }
@@ -72,6 +76,14 @@ Joystick leftJoystick, rightJoystick, enhancedDS;
     
     public boolean getGearIntakeCloseSwitch(){
     	return enhancedDS.getRawButton(RobotMap.GEAR_INTAKE_CLOSE_SWITCH_PORT);
+    }
+    
+    public boolean getClimberUpSwitch(){
+    	return enhancedDS.getRawButton(RobotMap.CLIMB_UP_PORT);
+    }
+    
+    public boolean getClimberDownSwitch(){
+    	return enhancedDS.getRawButton(RobotMap.CLIMB_DOWN_PORT);
     }
     
     public double getShooterDesiredSpeed(){
