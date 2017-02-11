@@ -41,6 +41,18 @@ public class RobotMap {
     				  	    AGITATOR_MOTOR_PORT = 5,
     				  	    CLIMBER_MOTOR_PORT = 6;
     
+  //PDP Ports
+    public static final int PDP_LEFT_FRONT_DRIVE_MOTOR_PORT = 0,
+    						PDP_RIGHT_FRONT_DRIVE_MOTOR_PORT = 1,
+    						PDP_LEFT_BACK_DRIVE_MOTOR_PORT = 2,
+    						PDP_RIGHT_BACK_DRIVE_MOTOR_PORT = 3,
+    						PDP_INTAKE_MOTOR_PORT = 4,
+    						PDP_LEFT_AGITATOR_MOTOR_PORT = 5,
+    						PDP_RIGHT_AGITATOR_MOTOR_PORT = 6,
+    						PDP_TOP_SHOOTER_MOTOR_PORT = 7,
+    						PDP_BOTTOM_SHOOTER_MOTOR_PORT = 8,
+    						PDP_CLIMBER_MOTOR_PORT = 9;
+    
     //PCM Ports
     public static final int INDEXER_SOLENOID_PORT = 0,
     						GEAR_INTAKE_SOLENOID_PORT = 1,

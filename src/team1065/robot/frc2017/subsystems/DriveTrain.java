@@ -127,6 +127,13 @@ public class DriveTrain extends Subsystem {
 		dropDown.set(false);
 	}
 	
+	public void ManualMotors(double LeftFrontSpeed, double RightFrontSpeed, double LeftBackSpeed, double RightBackSpeed){
+		leftFrontMotor.set(LeftFrontSpeed);
+		leftBackMotor.set(RightFrontSpeed);
+		rightFrontMotor.set(LeftBackSpeed);
+		rightBackMotor.set(RightBackSpeed);
+	}
+	
     public void updateStatus(){
     	SmartDashboard.putNumber("[DT] Angle", getAngle());
     	SmartDashboard.putNumber("[DT] Distance", getEncoderDistance());
