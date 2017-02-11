@@ -2,15 +2,14 @@ package team1065.robot.frc2017.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import team1065.robot.frc2017.Robot;
-import team1065.robot.frc2017.RobotMap;
 
 /**
  *
  */
-public class ManualIntakeControl extends Command {
+public class ManualGearControl extends Command {
 
-    public ManualIntakeControl() {
-        requires(Robot.intake);
+    public ManualGearControl() {
+        requires(Robot.gearSystem);
     }
 
     // Called just before this Command runs the first time
@@ -19,14 +18,18 @@ public class ManualIntakeControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.getIntakeInSwitch()){
-    		Robot.intake.setIntakeIn(.8);
-    	}
-    	else if(Robot.oi.getIntakeOutSwitch()){
-    		Robot.intake.setIntakeOut(.8);
+    	if(Robot.oi.getLeftJoystickTrigger()){
+    		Robot.gearSystem.extendGearPusher();
     	}
     	else{
-    		Robot.intake.setIntake(0);
+    		Robot.gearSystem.retractGearPusher();
+    	}
+    	
+    	if(Robot.oi.getGearIntakeCloseSwitch()){
+    		Robot.gearSystem.closeGearIntake();
+    	}
+    	else{
+    		Robot.gearSystem.openGearIntake();
     	}
     }
 

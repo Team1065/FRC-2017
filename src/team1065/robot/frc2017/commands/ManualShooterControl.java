@@ -19,11 +19,25 @@ public class ManualShooterControl extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//TODO: Check edge transitions instead of sending one or the other
-    	if(Robot.oi.getShooterOverride()){
+    	if(Robot.oi.getShooterOverride() || Robot.oi.getShooterDesiredSpeed() == 0){
     		Robot.shooter.setOpenLoop(Robot.oi.getShooterDesiredSpeed());
     	}
     	else{
     		Robot.shooter.setRpm(Robot.oi.getShooterDesiredSpeed());
+    	}
+    	
+    	//if commanded to shoot and the shooter is on target or we are already shooting
+    	if(Robot.oi.getRightJoystickTrigger() && (Robot.shooter.isOnTarget() || Robot.shooter.isIndexerOpen())){
+    		Robot.shooter.setAgitator(.5);
+    		Robot.shooter.setIndexerOpen();
+    	}
+    	else if(Robot.oi.getIntakeInSwitch()){
+    		Robot.shooter.setAgitator(-.3);
+    		Robot.shooter.setIndexerClose();
+    	}
+    	else{
+    		Robot.shooter.setAgitator(0);
+    		Robot.shooter.setIndexerClose();
     	}
     }
 

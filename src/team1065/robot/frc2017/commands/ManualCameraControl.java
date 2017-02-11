@@ -18,7 +18,10 @@ public class ManualCameraControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//TODO: not currently doing anything switching
+    	if (Robot.oi.getCamerafeedSwitch()){
+    		//Robot.cameras.switchCamera();
+    	}
+    	//Robot.cameras.sendImageToDS();
     }
 
     // Make this return true when this Command no longer needs to run execute()
