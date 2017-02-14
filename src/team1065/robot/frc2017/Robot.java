@@ -49,7 +49,18 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	driveTrain.resetAngle();
     	driveTrain.resetEncoder();
-        autonomousCommand = new AutoTest();
+    	
+    	Command[] CommandsArray = {
+			new AutoTest(),
+			new AutoTest(),
+			new AutoTest(),
+			new AutoTest(),
+		};
+
+    	//Selector 0 == Boiler(gear then shoot), 1 == Center(gear then shoot), 2 == Center(gear then go to neutral), 3 == Hooper (gear the go to neutral)
+    	int autoSelector = oi.getAutoKnobPosition();
+    	
+    	autonomousCommand = CommandsArray[autoSelector];
     	
     	
         if (autonomousCommand != null){

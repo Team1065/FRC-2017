@@ -2,6 +2,7 @@ package team1065.robot.frc2017.subsystems;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -30,9 +31,13 @@ public class Shooter extends Subsystem {
     	slaveTalon.setVoltageRampRate(36.0);
     	slaveTalon.configNominalOutputVoltage(+0.0f, -0.0f);
     	slaveTalon.configPeakOutputVoltage(+12.0f, 0.0f);
-    	
+    	/*
+    	masterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+    	if (masterTalon.isSensorPresent(
+                CANTalon.FeedbackDevice.CtreMagEncoder_Relative) != CANTalon.FeedbackDeviceStatus.FeedbackStatusPresent) {
+            DriverStation.reportError("Could not detect shooter encoder!", false);
+        }*/
     	masterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-    	//TODO: using 4*20, check if the rpms are sensible values
     	masterTalon.configEncoderCodesPerRev(20);
     	masterTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     	masterTalon.reverseSensor(true);

@@ -3,6 +3,7 @@ package team1065.robot.frc2017;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class OI {
+	public enum ALLIANCE{RED_ALLIANCE,BLUE_ALLIANCE};
 Joystick leftJoystick, rightJoystick, enhancedDS;
     
     
@@ -123,6 +124,50 @@ Joystick leftJoystick, rightJoystick, enhancedDS;
         }
 		
 		return speed;
+	}
+    
+    public int getAutoKnobPosition(){
+    	int position;
+		double knobValue = enhancedDS.getRawAxis(RobotMap.AUTO_KNOB_PORT);
+		double threshold = 0.010;
+		
+		//Introduce the use of a switch to double the number of auto modes we are able to select
+		
+		//If Station Knob is at 1
+		if(knobValue < RobotMap.AUTO_KNOB_POS_0 + threshold){
+            position = 0;
+        }
+        //If Station Knob is at 2
+        else if(knobValue >= RobotMap.AUTO_KNOB_POS_1 - threshold && knobValue < RobotMap.AUTO_KNOB_POS_1 + threshold){
+            position = 1;
+        }
+        //If Station Knob is at 3
+        else if(knobValue >= RobotMap.AUTO_KNOB_POS_2 - threshold && knobValue < RobotMap.AUTO_KNOB_POS_2 + threshold){
+            position = 2;
+        }
+        //If Station Knob is at 4
+        else if(knobValue >= RobotMap.AUTO_KNOB_POS_3 - threshold && knobValue < RobotMap.AUTO_KNOB_POS_3 + threshold){
+            position = 3;
+        }
+        else
+        {
+        	position = 0;
+        }
+		
+		return position;
+	}
+    
+    public ALLIANCE getAlliance(){
+    	ALLIANCE alliance;
+    	
+    	if(enhancedDS.getRawButton(RobotMap.SHOOTER_LONG_DISTANCE_SWITCH_PORT)){
+    		alliance = ALLIANCE.RED_ALLIANCE;
+    	}
+    	else{
+    		alliance = ALLIANCE.BLUE_ALLIANCE;
+    	}
+    	
+		return alliance;
 	}
 }
 

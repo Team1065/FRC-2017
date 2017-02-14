@@ -70,10 +70,10 @@ public class DriveTrain extends Subsystem {
     	if(state != State.STRAIGHT_DRIVE){
     		state = State.STRAIGHT_DRIVE;
     		resetAngle();
-    		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
-        	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
+    		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
     	}
-    	robotDrive.drive(velocity, -(getAngle() * RobotMap.STRAIGHT_DRIVE_P));
+    	robotDrive.mecanumDrive_Cartesian(0, -velocity, -(getAngle() * RobotMap.MECANUM_STRAIGHT_DRIVE_P), 0);
     }
     
     public void mecanumDrive(double x, double y, double rotation){

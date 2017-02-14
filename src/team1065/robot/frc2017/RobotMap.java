@@ -3,8 +3,8 @@ package team1065.robot.frc2017;
 public class RobotMap {
 	
 	//PID Constants
-    public static final double STRAIGHT_DRIVE_P = 0.052,
-    		                   MECANUM_STRAIGHT_DRIVE_P = 0.052,
+    public static final double STRAIGHT_DRIVE_P = 0.05,
+    		                   MECANUM_STRAIGHT_DRIVE_P = 0.05,
     		                   SHOOTER_F = 1.68,//1.5345 test bench
 	                		   SHOOTER_P = 13,//.5 testbench
             				   SHOOTER_I = 0.0001,//0.001 testbench
@@ -28,7 +28,7 @@ public class RobotMap {
     
     //Double Constants
     public static final double JOYSTICK_DEADBAND = 0.05,
-			                   DRIVE_STRAIGHT_BAND_PERCENTAGE = 0.2,
+			                   DRIVE_STRAIGHT_BAND_PERCENTAGE = 0.25,
 	    					   DRIVE_WHEEL_DIAMETER = 6,
 							   DRIVE_ENCODERS_COUNTS_PER_REV = 20;
 	

@@ -28,11 +28,11 @@ public class CameraSystem extends Subsystem {
 		camera0.setExposureManual(20);
 		camera0.setExposureHoldCurrent();
 		
-		camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+		/*camera1 = CameraServer.getInstance().startAutomaticCapture(1);
 		camera1.setFPS(15);
 		camera1.setResolution(320, 240);
 		camera1.setExposureManual(20);
-		camera1.setExposureHoldCurrent();
+		camera1.setExposureHoldCurrent();*/
 		
 		/*cvSink0 = CameraServer.getInstance().getVideo(camera0);
         outputStream = CameraServer.getInstance().putVideo("Switcher", 320, 240);

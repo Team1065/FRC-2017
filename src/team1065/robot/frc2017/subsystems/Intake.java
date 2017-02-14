@@ -14,6 +14,7 @@ public class Intake extends Subsystem {
     
     public Intake(){
     	intakeMotor = new Talon(RobotMap.INTAKE_MOTOR_PORT);
+    	intakeMotor.setInverted(true);
     }
 
     public void initDefaultCommand() {
