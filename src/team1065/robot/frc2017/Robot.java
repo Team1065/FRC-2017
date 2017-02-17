@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import team1065.robot.frc2017.commands.SelfTest.AutoSelfTest;
 import team1065.robot.frc2017.commands.autonomous.AutoBoiler;
 import team1065.robot.frc2017.commands.autonomous.AutoCenterRun;
 import team1065.robot.frc2017.commands.autonomous.AutoCenterShoot;
@@ -79,7 +80,7 @@ public class Robot extends IterativeRobot {
     	//Do SelfTest if left joystick top and trigger buttons are pressed when autonomous mode is started
     	if(oi.getLeftJoystickTop() && oi.getLeftJoystickTrigger()){
     		//TODO:add
-    		//autonomousCommand = new AutoSelfTest();
+    		autonomousCommand = new AutoSelfTest();
     	}
     	else{
     		autonomousCommand = CommandsArray[autoSelector];
