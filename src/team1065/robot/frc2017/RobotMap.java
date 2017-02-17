@@ -3,11 +3,10 @@ package team1065.robot.frc2017;
 public class RobotMap {
 	
 	//PID Constants
-    public static final double STRAIGHT_DRIVE_P = 0.05,
-    		                   MECANUM_STRAIGHT_DRIVE_P = 0.05,
-    		                   SHOOTER_F = 1.68,//1.5345 test bench
-	                		   SHOOTER_P = 13,//.5 testbench
-            				   SHOOTER_I = 0.0001,//0.001 testbench
+    public static final double MECANUM_STRAIGHT_DRIVE_P = 0.05,
+    		                   SHOOTER_F = 0.0333,//1.68 (20 count encoder)
+	                		   SHOOTER_P = 0.26,//13 (20 count encoder)
+            				   SHOOTER_I = 0.000002,//0.0001 (20 count encoder)
     						   SHOOTER_D = 0;
     
     //Shooter RPM values
@@ -20,10 +19,10 @@ public class RobotMap {
     
     //Shooter Voltage values
     public static final double SHOOTER_VOLT_0 = 0.0,
-    						   SHOOTER_VOLT_1 = 0.45,
-    						   SHOOTER_VOLT_2 = 0.50,
-    						   SHOOTER_VOLT_3 = 0.55,
-    						   SHOOTER_VOLT_4 = 0.6,
+    						   SHOOTER_VOLT_1 = 0.5,
+    						   SHOOTER_VOLT_2 = 0.6,
+    						   SHOOTER_VOLT_3 = 0.7,
+    						   SHOOTER_VOLT_4 = 0.8,
     						   SHOOTER_VOLT_5 = 1.0;
     
     //Double Constants

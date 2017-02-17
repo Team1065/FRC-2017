@@ -8,7 +8,7 @@ import team1065.robot.frc2017.Robot;
  */
 public class DriveToDistance extends Command {
 	double speed, distance;
-	
+	//set speed negative to go backwards
     public DriveToDistance(double speed, double distance, double time) {
     	requires(Robot.driveTrain);
     	this.speed = speed;
@@ -16,7 +16,7 @@ public class DriveToDistance extends Command {
         this.setTimeout(time);
     }
 
-    //set speed negative to go backwards
+    
     protected void initialize() {
     	Robot.driveTrain.resetEncoder();
     }

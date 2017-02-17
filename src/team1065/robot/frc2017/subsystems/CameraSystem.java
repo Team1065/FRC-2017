@@ -15,7 +15,7 @@ import team1065.robot.frc2017.commands.ManualCameraControl;
 public class CameraSystem extends Subsystem {
 	public enum State{FRONT_CAMERA_FEED, SIDE_CAMERA_FEED};
 	UsbCamera camera0;
-	UsbCamera camera1;
+	//UsbCamera camera1;
 	//CvSink cvSink0, cvSink1;
 	////CvSource outputStream;
 	//Mat image;

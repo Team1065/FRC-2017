@@ -26,6 +26,8 @@ public class DriveTrain extends Subsystem {
 	private Encoder encoder;
 	private Solenoid dropDown;
 	
+	double setAngle;
+	
 	public DriveTrain(){
 		leftFrontMotor = new VictorSP(RobotMap.LEFT_FRONT_DRIVE_MOTOR_PORT);
 		leftBackMotor = new VictorSP(RobotMap.LEFT_BACK_DRIVE_MOTOR_PORT);
@@ -45,6 +47,8 @@ public class DriveTrain extends Subsystem {
     	
     	dropDown = new Solenoid(RobotMap.DROPDOWN_SOLENOID_PORT);
     	
+    	setAngle = 0;
+    	
     	try {
             navX = new AHRS(SPI.Port.kMXP);
         } catch (RuntimeException ex ) {
@@ -59,41 +63,49 @@ public class DriveTrain extends Subsystem {
     public void tankDrive(double leftValue, double rightValue){
     	if(state != State.TANK_DRIVE){
     		state = State.TANK_DRIVE;
-    		resetAngle();
     		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
         	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
     	}
     	robotDrive.tankDrive(leftValue, rightValue, false);
     }
     
-    public void straightDrive(double velocity){
-    	if(state != State.STRAIGHT_DRIVE){
-    		state = State.STRAIGHT_DRIVE;
-    		resetAngle();
-    		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-        	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-    	}
-    	robotDrive.mecanumDrive_Cartesian(0, -velocity, -(getAngle() * RobotMap.MECANUM_STRAIGHT_DRIVE_P), 0);
-    }
-    
     public void mecanumDrive(double x, double y, double rotation){
     	if(state != State.MECANUM_DRIVE){
     		state = State.MECANUM_DRIVE;
-    		resetAngle();
     		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
     	}
     	robotDrive.mecanumDrive_Cartesian(x, -y, rotation, 0);
     }
     
-    public void mecanumStraightDrive(double x, double y){
-    	if(state != State.STRAIGHT_MECANUM){
-    		state = State.STRAIGHT_MECANUM;
-    		resetAngle();
+    public void straightDrive(double velocity){
+    	if(state != State.STRAIGHT_DRIVE){
+    		state = State.STRAIGHT_DRIVE;
+    		setAngle = getAngle();
     		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
     	}
-    	robotDrive.mecanumDrive_Cartesian(x, -y, -(getAngle() * RobotMap.MECANUM_STRAIGHT_DRIVE_P), 0);
+    	double curAngle = getAngle();
+    	double error = curAngle - setAngle;
+    	if(Math.abs(error) > 180){
+    		error = error>0 ? error-360 : error+360;
+    	}
+    	robotDrive.mecanumDrive_Cartesian(0, -velocity, -(error * RobotMap.MECANUM_STRAIGHT_DRIVE_P), 0);
+    }
+    
+    public void mecanumStraightDrive(double x, double y){
+    	if(state != State.STRAIGHT_MECANUM){
+    		state = State.STRAIGHT_MECANUM;
+    		setAngle = getAngle();
+    		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+    	}
+    	double curAngle = getAngle();
+    	double error = curAngle - setAngle;
+    	if(Math.abs(error) > 180){
+    		error = error>0 ? error-360 : error+360;
+    	}
+    	robotDrive.mecanumDrive_Cartesian(x, -y, -(error * RobotMap.MECANUM_STRAIGHT_DRIVE_P), 0);
     }
     
     public double getAngle(){

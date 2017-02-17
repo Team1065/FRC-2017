@@ -169,5 +169,12 @@ Joystick leftJoystick, rightJoystick, enhancedDS;
     	
 		return alliance;
 	}
+    
+    public boolean isRedAlliance(){
+		return getAlliance() == ALLIANCE.RED_ALLIANCE;
+	}
+    public boolean isBlueAlliance(){
+		return getAlliance() == ALLIANCE.BLUE_ALLIANCE;
+	}
 }
 
