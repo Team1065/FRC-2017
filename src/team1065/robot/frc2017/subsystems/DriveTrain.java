@@ -42,8 +42,8 @@ public class DriveTrain extends Subsystem {
 		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
     	robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
     	
-    	encoder = new Encoder(RobotMap.DRIVE_ENCODER_PORT_A,RobotMap.DRIVE_ENCODER_PORT_B,true,CounterBase.EncodingType.k1X);
-    	encoder.setDistancePerPulse((RobotMap.DRIVE_WHEEL_DIAMETER * Math.PI)/(RobotMap.DRIVE_ENCODERS_COUNTS_PER_REV));
+    	encoder = new Encoder(RobotMap.DRIVE_ENCODER_PORT_A,RobotMap.DRIVE_ENCODER_PORT_B,true);
+    	encoder.setDistancePerPulse(((RobotMap.DRIVE_WHEEL_DIAMETER * Math.PI)/(RobotMap.DRIVE_ENCODERS_COUNTS_PER_REV))/10.8);//10.8 for gearing
     	
     	dropDown = new Solenoid(RobotMap.DROPDOWN_SOLENOID_PORT);
     	

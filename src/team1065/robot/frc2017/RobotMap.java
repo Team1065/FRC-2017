@@ -4,18 +4,18 @@ public class RobotMap {
 	
 	//PID Constants
     public static final double MECANUM_STRAIGHT_DRIVE_P = 0.05,
-    		                   SHOOTER_F = 0.0333,//1.68 (20 count encoder)
-	                		   SHOOTER_P = 0.26,//13 (20 count encoder)
+    		                   SHOOTER_F = 0.066,//1.68 (20 count encoder)
+	                		   SHOOTER_P = 0.45,//13 (20 count encoder)
             				   SHOOTER_I = 0.000002,//0.0001 (20 count encoder)
     						   SHOOTER_D = 0;
     
     //Shooter RPM values
     public static final double SHOOTER_RPM_0 = 0.0,
-    						   SHOOTER_RPM_1 = 1750.0,
-    						   SHOOTER_RPM_2 = 1800.0,
-    						   SHOOTER_RPM_3 = 1850.0,
-    						   SHOOTER_RPM_4 = 1900.0,
-    						   SHOOTER_RPM_5 = 1950.0;
+    						   SHOOTER_RPM_1 = 1600.0,
+    						   SHOOTER_RPM_2 = 1650.0,
+    						   SHOOTER_RPM_3 = 1700.0,
+    						   SHOOTER_RPM_4 = 1750.0,
+    						   SHOOTER_RPM_5 = 1800.0;
     
     //Shooter Voltage values
     public static final double SHOOTER_VOLT_0 = 0.0,
@@ -29,7 +29,9 @@ public class RobotMap {
     public static final double JOYSTICK_DEADBAND = 0.05,
 			                   DRIVE_STRAIGHT_BAND_PERCENTAGE = 0.25,
 	    					   DRIVE_WHEEL_DIAMETER = 6,
-							   DRIVE_ENCODERS_COUNTS_PER_REV = 20;
+							   DRIVE_ENCODERS_COUNTS_PER_REV = 20,
+							   MOTOR_TEST_MOVING_CURRENT = 1.0,
+							   MOTOR_TEST_STOP_CURRENT = 0.0;
 	
 	//PWM Ports
     public static final int LEFT_FRONT_DRIVE_MOTOR_PORT = 0,

@@ -31,14 +31,14 @@ public class Shooter extends Subsystem {
     	slaveTalon.setVoltageRampRate(36.0);
     	slaveTalon.configNominalOutputVoltage(+0.0f, -0.0f);
     	slaveTalon.configPeakOutputVoltage(+12.0f, 0.0f);
-    	/*
-    	masterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+    	
+    	/*masterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
     	if (masterTalon.isSensorPresent(
                 CANTalon.FeedbackDevice.CtreMagEncoder_Relative) != CANTalon.FeedbackDeviceStatus.FeedbackStatusPresent) {
             DriverStation.reportError("Could not detect shooter encoder!", false);
         }*/
     	masterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-    	masterTalon.configEncoderCodesPerRev(20);
+    	masterTalon.configEncoderCodesPerRev(1024);
     	masterTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     	masterTalon.reverseSensor(true);
     	masterTalon.reverseOutput(false);

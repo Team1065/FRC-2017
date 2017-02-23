@@ -59,20 +59,20 @@ public class Robot extends IterativeRobot {
     	driveTrain.resetEncoder();
     	
     	//testing
+    	/*
     	Command[] CommandsArray = {
 			new AutoTest(),
 			new AutoTest(),
 			new AutoTest(),
 			new AutoTest(),
-		};
+		};*/
     	
-    	//TODO:use this once testing is done
-    	/*Command[] CommandsArray = {
+    	Command[] CommandsArray = {
 			new AutoBoiler(),
 			new AutoCenterShoot(),
 			new AutoCenterRun(),
 			new AutoFarSide(),
-		};*/
+		};
 
     	//Selector 0 == Boiler(gear then shoot), 1 == Center(gear then shoot), 2 == Center(gear then go to neutral), 3 == Hooper (gear the go to neutral)
     	int autoSelector = oi.getAutoKnobPosition();
@@ -92,6 +92,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        driveTrain.updateStatus();
+        shooter.updateStatus();
     }
 
     public void teleopInit() {
