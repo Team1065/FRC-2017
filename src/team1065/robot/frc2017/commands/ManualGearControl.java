@@ -18,6 +18,8 @@ public class ManualGearControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.gearSystem.setLED(Robot.gearSystem.isGearDetected());
+    	
     	if(Robot.oi.getLeftJoystickTrigger()){
     		Robot.gearSystem.extendGearPusher();
     	}

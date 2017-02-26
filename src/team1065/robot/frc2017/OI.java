@@ -157,6 +157,10 @@ Joystick leftJoystick, rightJoystick, enhancedDS;
 		return position;
 	}
     
+    public double getCameraStickX(){
+    	return enhancedDS.getRawAxis(RobotMap.CAMERA_JOYSTICK_X_PORT);
+    }
+    
     public ALLIANCE getAlliance(){
     	ALLIANCE alliance;
     	

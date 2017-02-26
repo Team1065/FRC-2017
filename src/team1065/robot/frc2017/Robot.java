@@ -94,6 +94,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         driveTrain.updateStatus();
         shooter.updateStatus();
+        gearSystem.updateStatus();
     }
 
     public void teleopInit() {
@@ -108,6 +109,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         driveTrain.updateStatus();
         shooter.updateStatus();
+        gearSystem.updateStatus();
         
         if(oi.getCompressorOverride()){
         	compressor.setClosedLoopControl(false);

@@ -40,17 +40,20 @@ public class RobotMap {
     				  	    RIGHT_BACK_DRIVE_MOTOR_PORT = 3,
     				  	    INTAKE_MOTOR_PORT = 4,
     				  	    AGITATOR_MOTOR_PORT = 5,
-    				  	    CLIMBER_MOTOR_PORT = 6;
+    				  	    CLIMBER_MOTOR_PORT = 6,
+    				  	    CAMERA_SERVO_PORT = 7;
     
     //PCM Ports
     public static final int INDEXER_SOLENOID_PORT = 0,
     						GEAR_INTAKE_SOLENOID_PORT = 1,
     						GEAR_PUSHER_SOLENOID_PORT = 2,
-    						DROPDOWN_SOLENOID_PORT = 3;
+    						DROPDOWN_SOLENOID_PORT = 3,
+    						BACK_LED_PCM_PORT = 7;
     
     //Digital Ports
     public static final int DRIVE_ENCODER_PORT_A = 0,
-	    				    DRIVE_ENCODER_PORT_B = 1;
+	    				    DRIVE_ENCODER_PORT_B = 1,
+	    				    GEAR_IR_SENSOR_PORT = 2;
     
     //CANTalon Ports
     public static final int MASTER_TALON_PORT = 1,
@@ -69,7 +72,8 @@ public class RobotMap {
 						    SHOOTER_CONTROLLER_OVERRIDE = 9,		//Digital
 						    SHOOTER_LONG_DISTANCE_SWITCH_PORT = 12,	//digital
 				    		SHOOTER_KNOB_PORT = 0,					//Analog
-				    		AUTO_KNOB_PORT = 1;						//Analog
+				    		AUTO_KNOB_PORT = 1,                     //Analog
+				    		CAMERA_JOYSTICK_X_PORT = 4;			    //Analog
     
     public static final double SHOOTER_KNOB_POS_0 = 0.000,
 			   SHOOTER_KNOB_POS_1 = 0.024,

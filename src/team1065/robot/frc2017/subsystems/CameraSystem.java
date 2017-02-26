@@ -6,7 +6,9 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import team1065.robot.frc2017.RobotMap;
 import team1065.robot.frc2017.commands.ManualCameraControl;
 
 /**
@@ -14,6 +16,7 @@ import team1065.robot.frc2017.commands.ManualCameraControl;
  */
 public class CameraSystem extends Subsystem {
 	public enum State{FRONT_CAMERA_FEED, SIDE_CAMERA_FEED};
+	Servo mount;
 	UsbCamera camera0;
 	//UsbCamera camera1;
 	//CvSink cvSink0, cvSink1;
@@ -22,6 +25,8 @@ public class CameraSystem extends Subsystem {
 	State currSession;
 	
 	public CameraSystem(){
+		mount = new Servo(RobotMap.CAMERA_SERVO_PORT);
+		
 		camera0 = CameraServer.getInstance().startAutomaticCapture(0);
 		camera0.setFPS(15);
 		camera0.setResolution(320, 240);
@@ -43,6 +48,15 @@ public class CameraSystem extends Subsystem {
     public void initDefaultCommand() {
         setDefaultCommand(new ManualCameraControl());
     }
+    
+    public void setMount(double val){
+    	mount.set(val);
+    }
+    
+    public double getMount(){
+    	return mount.get();
+    }
+    
     /*
     public void switchCamera(){
 		if(currSession == State.FRONT_CAMERA_FEED){
