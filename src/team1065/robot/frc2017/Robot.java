@@ -110,6 +110,7 @@ public class Robot extends IterativeRobot {
         driveTrain.updateStatus();
         shooter.updateStatus();
         gearSystem.updateStatus();
+        cameras.updateStatus();
         
         if(oi.getCompressorOverride()){
         	compressor.setClosedLoopControl(false);

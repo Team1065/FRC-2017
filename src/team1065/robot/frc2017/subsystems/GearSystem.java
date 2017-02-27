@@ -19,6 +19,7 @@ public class GearSystem extends Subsystem {
     	intake = new Solenoid(RobotMap.GEAR_INTAKE_SOLENOID_PORT);
     	pusher = new Solenoid(RobotMap.GEAR_PUSHER_SOLENOID_PORT);
     	ir = new DigitalInput(RobotMap.GEAR_IR_SENSOR_PORT);
+    	LED = new Solenoid(RobotMap.BACK_LED_PCM_PORT);
     }
 
     public void initDefaultCommand() {

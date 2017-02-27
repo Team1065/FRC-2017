@@ -8,6 +8,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team1065.robot.frc2017.RobotMap;
 import team1065.robot.frc2017.commands.ManualCameraControl;
 
@@ -26,6 +27,7 @@ public class CameraSystem extends Subsystem {
 	
 	public CameraSystem(){
 		mount = new Servo(RobotMap.CAMERA_SERVO_PORT);
+		setMount(0);
 		
 		camera0 = CameraServer.getInstance().startAutomaticCapture(0);
 		camera0.setFPS(15);
@@ -50,6 +52,12 @@ public class CameraSystem extends Subsystem {
     }
     
     public void setMount(double val){
+    	if (val < 0.08){
+    		val = 0.08;
+    	}
+    	else if (val > 0.44){
+    		val = 0.44;
+    	}
     	mount.set(val);
     }
     
@@ -82,4 +90,8 @@ public class CameraSystem extends Subsystem {
         outputStream.putFrame(image);
 	}
     */
+    
+    public void updateStatus(){
+    	SmartDashboard.putNumber("Camera Angle", getMount());
+    }
 }
