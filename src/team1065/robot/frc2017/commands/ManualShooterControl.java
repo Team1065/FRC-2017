@@ -28,11 +28,11 @@ public class ManualShooterControl extends Command {
     	
     	//if commanded to shoot and the shooter is on target or we are already shooting
     	if(Robot.oi.getRightJoystickTrigger() && (Robot.shooter.isOnTarget() || Robot.shooter.isIndexerOpen())){
-    		Robot.shooter.setAgitator(.5);
+    		Robot.shooter.setAgitator(.3);
     		Robot.shooter.setIndexerOpen();
     	}
     	else if(Robot.oi.getIntakeInSwitch()){
-    		Robot.shooter.setAgitator(-.3);
+    		//Robot.shooter.setAgitator(-.2);
     		Robot.shooter.setIndexerClose();
     	}
     	else{

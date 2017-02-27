@@ -22,6 +22,18 @@ public class ManualCameraControl extends Command {
     		//Robot.cameras.switchCamera();
     	}
     	//Robot.cameras.sendImageToDS();
+    	
+    	double mountVal = Robot.cameras.getMount();
+    	double cameraStickX = Robot.oi.getCameraStickX();
+    	
+    	if(cameraStickX > 0.073){
+    		mountVal += .01;
+    	}
+    	else if(cameraStickX < 0.053){
+    		mountVal -= .01;
+    	}
+    	
+    	Robot.cameras.setMount(mountVal);
     }
 
     // Make this return true when this Command no longer needs to run execute()

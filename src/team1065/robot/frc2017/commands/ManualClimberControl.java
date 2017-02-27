@@ -22,10 +22,10 @@ public class ManualClimberControl extends Command {
     		Robot.climber.goUp();
     	}
     	else if(Robot.oi.getClimberDownSwitch()){
-    		Robot.climber.goDown();
+    		Robot.climber.stop();
     	}
     	else{
-    		Robot.climber.stop();
+    		Robot.climber.goUpSlow();
     	}
     }
 

@@ -3,9 +3,15 @@ package team1065.robot.frc2017;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import team1065.robot.frc2017.commands.SelfTest.AutoSelfTest;
+import team1065.robot.frc2017.commands.autonomous.AutoBoiler;
+import team1065.robot.frc2017.commands.autonomous.AutoCenterRun;
+import team1065.robot.frc2017.commands.autonomous.AutoCenterShoot;
+import team1065.robot.frc2017.commands.autonomous.AutoFarSide;
 import team1065.robot.frc2017.commands.autonomous.AutoTest;
 import team1065.robot.frc2017.subsystems.CameraSystem;
 import team1065.robot.frc2017.subsystems.Climber;
@@ -24,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static CameraSystem cameras;
 	public static GearSystem gearSystem;
 	public static Climber climber;
+	public static PowerDistributionPanel pdp;
 	
 	Command autonomousCommand;
 
@@ -36,6 +43,7 @@ public class Robot extends IterativeRobot {
 		cameras = new CameraSystem();
 		gearSystem = new GearSystem();
 		climber = new Climber();
+		pdp = new PowerDistributionPanel();
     }
 	
     public void disabledInit(){
@@ -49,9 +57,34 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	driveTrain.resetAngle();
     	driveTrain.resetEncoder();
-        autonomousCommand = new AutoTest();
     	
+    	//testing
+    	/*
+    	Command[] CommandsArray = {
+			new AutoTest(),
+			new AutoTest(),
+			new AutoTest(),
+			new AutoTest(),
+		};*/
     	
+    	Command[] CommandsArray = {
+			new AutoBoiler(),
+			new AutoCenterShoot(),
+			new AutoCenterRun(),
+			new AutoFarSide(),
+		};
+
+    	//Selector 0 == Boiler(gear then shoot), 1 == Center(gear then shoot), 2 == Center(gear then go to neutral), 3 == Hooper (gear the go to neutral)
+    	int autoSelector = oi.getAutoKnobPosition();
+    	
+    	//Do SelfTest if left joystick top and trigger buttons are pressed when autonomous mode is started
+    	if(oi.getLeftJoystickTop() && oi.getLeftJoystickTrigger()){
+    		//TODO:add
+    		autonomousCommand = new AutoSelfTest();
+    	}
+    	else{
+    		autonomousCommand = CommandsArray[autoSelector];
+    	}
         if (autonomousCommand != null){
         	autonomousCommand.start();
         }
@@ -59,6 +92,9 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        driveTrain.updateStatus();
+        shooter.updateStatus();
+        gearSystem.updateStatus();
     }
 
     public void teleopInit() {
@@ -73,6 +109,8 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         driveTrain.updateStatus();
         shooter.updateStatus();
+        gearSystem.updateStatus();
+        cameras.updateStatus();
         
         if(oi.getCompressorOverride()){
         	compressor.setClosedLoopControl(false);

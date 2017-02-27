@@ -1,4 +1,4 @@
-package team1065.robot.frc2017.commands;
+package team1065.robot.frc2017.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
 import team1065.robot.frc2017.Robot;
@@ -6,38 +6,27 @@ import team1065.robot.frc2017.Robot;
 /**
  *
  */
-public class ManualGearControl extends Command {
-
-    public ManualGearControl() {
-        requires(Robot.gearSystem);
+public class SetIntake extends Command {
+    double value;
+    public SetIntake(double value) {
+        requires(Robot.intake);
+        this.value = value;
+        this.setTimeout(.1);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.intake.setIntake(value);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearSystem.setLED(Robot.gearSystem.isGearDetected());
     	
-    	if(Robot.oi.getLeftJoystickTrigger()){
-    		Robot.gearSystem.extendGearPusher();
-    	}
-    	else{
-    		Robot.gearSystem.retractGearPusher();
-    	}
-    	
-    	if(Robot.oi.getGearIntakeCloseSwitch()){
-    		Robot.gearSystem.closeGearIntake();
-    	}
-    	else{
-    		Robot.gearSystem.openGearIntake();
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	return this.isTimedOut();
     }
 
     // Called once after isFinished returns true
