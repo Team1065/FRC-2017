@@ -48,6 +48,8 @@ public class RobotMap {
     						GEAR_INTAKE_SOLENOID_PORT = 1,
     						GEAR_PUSHER_SOLENOID_PORT = 2,
     						DROPDOWN_SOLENOID_PORT = 3,
+    						LEFT_LED_PCM_PORT = 5,
+    						RIGHT_LED_PCM_PORT = 6,
     						BACK_LED_PCM_PORT = 7;
     
     //Digital Ports

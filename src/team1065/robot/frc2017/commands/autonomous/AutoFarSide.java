@@ -10,7 +10,7 @@ public class AutoFarSide extends CommandGroup {
 
     public AutoFarSide() {
     	int allianceMultiplier = Robot.oi.isRedAlliance()? 1:-1;
-    	//go score peg
+    	//go score a gear
     	addSequential(new DriveToDistance(0.4, 101, 15.0));
     	addSequential(new RotateToAngle(.4, 54.5 * allianceMultiplier, 15.0));
     	addSequential(new DriveToDistance(0.5, 11, 15.0));
@@ -19,6 +19,6 @@ public class AutoFarSide extends CommandGroup {
     	addSequential(new DriveToDistance(-0.5, 30, 15.0));
     	//go hopper
     	addSequential(new RotateToAngle(.4, 0 * allianceMultiplier, 15.0));
-    	addSequential(new DriveToDistance(0.4, 100, 15.0));
+    	addSequential(new DriveToDistance(0.8, 200, 15.0));
     }
 }

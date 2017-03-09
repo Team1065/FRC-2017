@@ -1,5 +1,6 @@
 package team1065.robot.frc2017.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import team1065.robot.frc2017.Robot;
 
@@ -18,7 +19,18 @@ public class ManualGearControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearSystem.setLED(Robot.gearSystem.isGearDetected());
+    	if(Robot.shooter.isOnTarget()){
+    		double timeDecimal = Timer.getFPGATimestamp() % 0.4;
+    		if(timeDecimal < 0.25){
+    			Robot.gearSystem.setLED(true);
+    		}
+    		else{
+    			Robot.gearSystem.setLED(false);
+    		}
+    	}
+    	else{
+    		Robot.gearSystem.setLED(Robot.gearSystem.isGearDetected());
+    	}
     	
     	if(Robot.oi.getLeftJoystickTrigger()){
     		Robot.gearSystem.extendGearPusher();

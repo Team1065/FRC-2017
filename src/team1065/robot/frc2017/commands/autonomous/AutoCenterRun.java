@@ -19,6 +19,6 @@ public class AutoCenterRun extends CommandGroup {
     	addSequential(new RotateToAngle(.5, -90 * allianceMultiplier, 15.0));
     	addSequential(new DriveToDistance(0.5, 100, 15.0));
     	addSequential(new RotateToAngle(.5, 0 * allianceMultiplier, 15.0));
-    	addSequential(new DriveToDistance(0.8, 200, 15.0));
+    	addSequential(new DriveToDistance(0.8, 220, 15.0));
     }
 }

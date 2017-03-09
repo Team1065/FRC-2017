@@ -25,7 +25,7 @@ public class ManualClimberControl extends Command {
     		Robot.climber.stop();
     	}
     	else{
-    		Robot.climber.goUpSlow();
+    		Robot.climber.stop();
     	}
     }
 

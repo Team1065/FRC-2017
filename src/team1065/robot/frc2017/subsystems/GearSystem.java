@@ -12,14 +12,16 @@ import team1065.robot.frc2017.commands.ManualGearControl;
  */
 public class GearSystem extends Subsystem {
 
-    Solenoid intake, pusher, LED;
+    Solenoid intake, pusher, backLED, rightLED, leftLED;
     DigitalInput ir;
     
     public GearSystem(){
     	intake = new Solenoid(RobotMap.GEAR_INTAKE_SOLENOID_PORT);
     	pusher = new Solenoid(RobotMap.GEAR_PUSHER_SOLENOID_PORT);
     	ir = new DigitalInput(RobotMap.GEAR_IR_SENSOR_PORT);
-    	LED = new Solenoid(RobotMap.BACK_LED_PCM_PORT);
+    	backLED = new Solenoid(RobotMap.BACK_LED_PCM_PORT);
+    	leftLED = new Solenoid(RobotMap.LEFT_LED_PCM_PORT);
+    	rightLED = new Solenoid(RobotMap.RIGHT_LED_PCM_PORT);
     }
 
     public void initDefaultCommand() {
@@ -47,7 +49,9 @@ public class GearSystem extends Subsystem {
     }
     
     public void setLED(boolean val){
-    	LED.set(val);
+    	backLED.set(val);
+    	leftLED.set(val);
+    	rightLED.set(val);
     }
     
     public void updateStatus(){
