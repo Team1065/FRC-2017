@@ -12,13 +12,13 @@ public class AutoCenterRun extends CommandGroup {
     	int allianceMultiplier = Robot.oi.isRedAlliance()? 1:-1;
     	
     	addSequential(new DriveToDistance(0.4, 78, 15.0));
-    	addParallel(new PushGearForTime(1.0));
+    	addParallel(new PushGearForTime(2.0));
     	addSequential(new DriveForTime(0,0,0.8));
     	addSequential(new DriveToDistance(-0.46, 30, 15.0));
     	
     	addSequential(new RotateToAngle(.5, -90 * allianceMultiplier, 15.0));
     	addSequential(new DriveToDistance(0.5, 100, 15.0));
     	addSequential(new RotateToAngle(.5, 0 * allianceMultiplier, 15.0));
-    	addSequential(new DriveToDistance(0.8, 220, 15.0));
+    	addSequential(new DriveToDistance(0.8, 310, 15.0));
     }
 }

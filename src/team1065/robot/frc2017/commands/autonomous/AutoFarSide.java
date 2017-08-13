@@ -13,10 +13,10 @@ public class AutoFarSide extends CommandGroup {
     	//go score a gear
     	addSequential(new DriveToDistance(0.4, 101, 15.0));
     	addSequential(new RotateToAngle(.4, 54.5 * allianceMultiplier, 15.0));
-    	addSequential(new DriveToDistance(0.5, 15, 15.0));
-    	addParallel(new PushGearForTime(1.0));
+    	addSequential(new DriveToDistance(0.5, 20, 15.0));
+    	addParallel(new PushGearForTime(2.0));
     	addSequential(new DriveForTime(0,0,0.8));
-    	addSequential(new DriveToDistance(-0.5, 25, 15.0));
+    	addSequential(new DriveToDistance(-0.5, 30, 15.0));
     	//go hopper
     	addSequential(new RotateToAngle(.4, 0 * allianceMultiplier, 15.0));
     	addSequential(new DriveToDistance(0.8, 200, 15.0));

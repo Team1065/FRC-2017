@@ -12,8 +12,8 @@ public class AutoCenterShoot extends CommandGroup {
     	int allianceMultiplier = Robot.oi.isRedAlliance()? 1:-1;
     	
     	addSequential(new DriveToDistance(0.4, 78, 15.0));
-    	addParallel(new PushGearForTime(1.0));
-    	addSequential(new DriveForTime(0,0,0.7));
+    	addParallel(new PushGearForTime(2.0));
+    	addSequential(new DriveForTime(0,0,0.8));
     	addSequential(new DriveToDistance(-0.42, 43, 15.0));
     	
     	addSequential(new RotateToAngle(.5, 90 * allianceMultiplier, 15.0));
